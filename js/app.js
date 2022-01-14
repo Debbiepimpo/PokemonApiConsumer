@@ -1,6 +1,7 @@
-document.addEventListener("DOMContentLoaded", renderEverything);
+document.addEventListener("DOMContentLoaded", pokemonListImages);
 
-function renderEverything(){
+function pokemonListImages(){
+   //Create a Pokemon images list and make them clickable to find the data of each pokemon into a modal
   for (let i = 1; i < 151; i++) {
     let allPokemonContainer = document.getElementById('poke-container');
     let pokeContainer = document.createElement("div");
@@ -18,16 +19,17 @@ function renderEverything(){
 }
 
 function fetchPokemon (){
+   //Get the data from an API and convert it to a Json to deal with the data easily
   fetch(`https://pokeapi.co/api/v2/pokemon/${this.id}`)
   .then(response => response.json())
   .then(function(pokeData){
-    renderPokemon(pokeData)
+    pokeModal(pokeData)
   })
 
 }
 
-function renderPokemon(pokeData){
-
+function pokeModal(pokeData){
+  //Create a Modal in HTML with JS and pass the info required
   let myModal = document.getElementById('myModal');
   let modalTitle = document.getElementById('modal-title');
   let modalBody = document.getElementById('modal-body');
